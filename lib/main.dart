@@ -4,7 +4,7 @@ import 'package:simple_calc_hw/core/bloc/bloc.dart';
 import 'package:simple_calc_hw/core/bloc/my_bloc_observer.dart';
 import 'package:simple_calc_hw/core/domain/calculator.dart';
 import 'package:simple_calc_hw/core/theme/theme.dart';
-import 'package:simple_calc_hw/features/main/main_page.dart';
+import 'package:simple_calc_hw/features/tip_calculator/tip_calculator_page.dart';
 
 void main() {
   Bloc.observer = MyBlocObserver();
@@ -55,7 +55,7 @@ class App extends StatelessWidget {
     return MaterialApp(
       theme: context.watch<AppBloc>().state.themeData,
       debugShowCheckedModeBanner: false,
-      home: const MainPage(),
+      home: const TipCalculatorPage(),
     );
   }
 }
