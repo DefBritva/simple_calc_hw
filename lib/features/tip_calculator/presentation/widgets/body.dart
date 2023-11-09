@@ -20,25 +20,27 @@ class _CalcBodyState extends State<CalcBody> {
   Widget build(BuildContext context) {
     final height = MediaQuery.of(context).size.height;
     final width = MediaQuery.of(context).size.width;
-    return Align(
-      alignment: Alignment.center,
-      child: Column(
-        children: [
-          SizedBox(height: height * 0.025),
-          UserInputWidget(
-            height: height,
-            width: width,
-            inputController: _inputController,
-          ),
-          AmountOfTipsTextWidget(height: height),
-          const PercentsWidget(),
-          SizedBox(height: height * 0.07),
-          CalculateButton(inputController: _inputController),
-          SizedBox(height: height * 0.125),
-          const ResultTextWidget(),
-          SizedBox(height: height * 0.01),
-          const ResultTipWidget(),
-        ],
+    return SafeArea(
+      child: Align(
+        alignment: Alignment.center,
+        child: Column(
+          children: [
+            SizedBox(height: height * 0.025),
+            UserInputWidget(
+              height: height,
+              width: width,
+              inputController: _inputController,
+            ),
+            AmountOfTipsTextWidget(height: height),
+            const PercentsWidget(),
+            SizedBox(height: height * 0.07),
+            CalculateButton(inputController: _inputController),
+            SizedBox(height: height * 0.05),
+            const ResultTextWidget(),
+            SizedBox(height: height * 0.01),
+            const ResultTipWidget(),
+          ],
+        ),
       ),
     );
   }

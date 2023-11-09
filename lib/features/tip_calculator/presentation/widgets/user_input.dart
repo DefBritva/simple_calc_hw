@@ -21,7 +21,7 @@ class UserInput extends StatelessWidget {
           context.read<AppBloc>().add(LoadInput(input));
         },
         style: const TextStyle(),
-        maxLength: 33,
+        maxLength: 16,
         decoration: InputDecoration(
           hintText: 'Сумма счёта (руб)',
           contentPadding:
