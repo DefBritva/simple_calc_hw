@@ -21,10 +21,10 @@ abstract class AppState extends Equatable {
 
 class InitialState extends AppState {
   const InitialState(super.themeData,
-      [super.result = '', super.percent = -1, super.userInput = '']);
+      [super.result = '0', super.percent = -1, super.userInput = '']);
 }
 
 class MainPageState extends AppState {
   const MainPageState(super.themeData,
-      [super.result = '', super.percent = -1, super.userInput = '']);
+      [super.result = '0', super.percent = -1, super.userInput = '']);
 }

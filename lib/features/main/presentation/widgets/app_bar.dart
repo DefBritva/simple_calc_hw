@@ -13,9 +13,9 @@ class CalcAppBar extends StatelessWidget implements PreferredSizeWidget {
       actions: [
         IconButton(
           onPressed: () => context.read<AppBloc>().add(ThemeButtonPressed()),
-          icon: Theme.of(context).primaryColor == Colors.purpleAccent
-              ? const Icon(Icons.dark_mode_sharp)
-              : const Icon(Icons.light_mode_sharp),
+          icon: Theme.of(context).primaryColor == Colors.deepPurpleAccent
+              ? const Icon(Icons.light_mode_sharp)
+              : const Icon(Icons.dark_mode_sharp),
         )
       ],
     );

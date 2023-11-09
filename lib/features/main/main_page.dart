@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:simple_calc_hw/features/main/presentation/app_bar.dart';
-import 'package:simple_calc_hw/features/main/presentation/body.dart';
+import 'package:simple_calc_hw/features/main/presentation/widgets/app_bar.dart';
+import 'package:simple_calc_hw/features/main/presentation/widgets/body.dart';
 
 class MainPage extends StatelessWidget {
   const MainPage({super.key});
