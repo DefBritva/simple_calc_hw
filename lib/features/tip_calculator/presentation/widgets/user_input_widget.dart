@@ -30,7 +30,7 @@ class UserInputWidget extends StatelessWidget {
           UserInput(inputContoller: _inputController),
           Padding(
             padding: EdgeInsets.only(
-                top: MediaQuery.of(context).size.height > 600
+                top: MediaQuery.of(context).size.height > 599
                     ? MediaQuery.of(context).size.height * 0.025
                     : MediaQuery.of(context).size.height * 0.013),
             child: IconButton(
