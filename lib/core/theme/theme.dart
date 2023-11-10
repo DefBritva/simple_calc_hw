@@ -20,6 +20,7 @@ ThemeData darkMode = ThemeData(
 class ThemeChanger {
   ThemeData _themeData = darkMode;
 
+  // ignore: unnecessary_getters_setters
   ThemeData get themeData => _themeData;
 
   set themeData(ThemeData themeData) {

@@ -5,7 +5,7 @@ import 'package:simple_calc_hw/core/bloc/bloc.dart';
 class UserInput extends StatelessWidget {
   final TextEditingController inputContoller;
 
-  UserInput({
+  const UserInput({
     super.key,
     required this.inputContoller,
   });
@@ -14,6 +14,7 @@ class UserInput extends StatelessWidget {
   Widget build(BuildContext context) {
     return Flexible(
       child: TextField(
+        keyboardType: TextInputType.number,
         controller: inputContoller,
         onSubmitted: (value) {},
         onChanged: (value) {
