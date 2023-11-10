@@ -66,5 +66,15 @@ class AppBloc extends Bloc<AppEvent, AppState> {
       );
       emit(newState);
     });
+
+    on<ResetInputAndResult>((event, emit) {
+      final newState = MainPageState(
+        state.themeData,
+        event.result,
+        state.percent,
+        event.input,
+      );
+      emit(newState);
+    });
   }
 }

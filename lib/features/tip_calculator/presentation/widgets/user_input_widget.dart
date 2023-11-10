@@ -34,10 +34,11 @@ class UserInputWidget extends StatelessWidget {
                     ? MediaQuery.of(context).size.height * 0.025
                     : MediaQuery.of(context).size.height * 0.013),
             child: IconButton(
+                iconSize: 20,
                 onPressed: () {
                   _inputController.clear();
 
-                  context.read<AppBloc>().add(LoadInput(''));
+                  context.read<AppBloc>().add(ResetInputAndResult());
                 },
                 icon: const Icon(
                   Icons.close_outlined,

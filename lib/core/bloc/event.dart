@@ -32,3 +32,11 @@ final class LoadInput extends AppEvent {
   @override
   List<Object?> get props => [input];
 }
+
+final class ResetInputAndResult extends AppEvent {
+  final String input = '';
+  final String result = '0';
+
+  @override
+  List<Object?> get props => [input, result];
+}
