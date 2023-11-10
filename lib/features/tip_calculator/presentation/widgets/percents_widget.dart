@@ -17,6 +17,7 @@ class _PercentsWidgetState extends State<PercentsWidget> {
   @override
   Widget build(BuildContext context) {
     return Column(
+      crossAxisAlignment: CrossAxisAlignment.start,
       children: [
         RadioListTile(
             title: const Text(
@@ -63,6 +64,18 @@ class _PercentsWidgetState extends State<PercentsWidget> {
                 context.read<AppBloc>().add(PercentSelected(percent ?? -1));
               });
             }),
+        Padding(
+          padding:
+              EdgeInsets.only(left: MediaQuery.of(context).size.width * 0.03),
+          child: TextButton(
+              onPressed: () {
+                setState(() {
+                  percent = 0;
+                  context.read<AppBloc>().add(PercentSelected(percent ?? -1));
+                });
+              },
+              child: const Text('reset')),
+        )
       ],
     );
   }
