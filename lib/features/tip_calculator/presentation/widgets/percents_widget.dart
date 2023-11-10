@@ -74,7 +74,7 @@ class _PercentsWidgetState extends State<PercentsWidget> {
                   context.read<AppBloc>().add(PercentSelected(percent ?? -1));
                 });
               },
-              child: const Text('reset')),
+              child: const Text('сброс')),
         )
       ],
     );
