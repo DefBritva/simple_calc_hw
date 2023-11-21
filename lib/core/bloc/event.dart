@@ -40,3 +40,24 @@ final class ResetInputAndResult extends AppEvent {
   @override
   List<Object?> get props => [input, result];
 }
+
+final class SavePercents extends AppEvent {
+  final List<String> percents;
+
+  SavePercents({required this.percents});
+
+  @override
+  List<Object?> get props => [percents];
+}
+
+final class Start extends AppEvent {
+  @override
+  List<Object?> get props => [];
+}
+
+final class SetDefaultPercents extends AppEvent {
+  final List<int> percents = const [5, 10, 15];
+
+  @override
+  List<Object?> get props => [percents];
+}

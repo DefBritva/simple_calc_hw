@@ -1,6 +1,10 @@
 import 'package:flutter/material.dart';
 
 ThemeData lightMode = ThemeData(
+  inputDecorationTheme: InputDecorationTheme(
+      border: OutlineInputBorder(borderRadius: BorderRadius.circular(16))),
+  drawerTheme:
+      const DrawerThemeData(backgroundColor: Color.fromRGBO(255, 255, 255, 1)),
   bottomAppBarTheme: const BottomAppBarTheme(color: Colors.black),
   primaryColor: Colors.purpleAccent,
   brightness: Brightness.light,
@@ -10,6 +14,7 @@ ThemeData lightMode = ThemeData(
 );
 
 ThemeData darkMode = ThemeData(
+    drawerTheme: const DrawerThemeData(backgroundColor: Colors.black54),
     bottomAppBarTheme: const BottomAppBarTheme(color: Colors.white),
     primaryColor: Colors.deepPurpleAccent,
     brightness: Brightness.dark,

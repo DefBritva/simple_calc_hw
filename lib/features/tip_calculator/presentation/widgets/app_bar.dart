@@ -1,6 +1,8 @@
+import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:simple_calc_hw/core/bloc/bloc.dart';
+import 'package:simple_calc_hw/generated/locale_keys.g.dart';
 
 class CalcAppBar extends StatelessWidget implements PreferredSizeWidget {
   const CalcAppBar({super.key});
@@ -8,7 +10,12 @@ class CalcAppBar extends StatelessWidget implements PreferredSizeWidget {
   @override
   Widget build(BuildContext context) {
     return AppBar(
-      title: const Text('Simple tips calc'),
+      leading: IconButton(
+          onPressed: () {
+            Scaffold.of(context).openDrawer();
+          },
+          icon: const Icon(Icons.settings)),
+      title: Text(LocaleKeys.hello_world.tr()),
       centerTitle: true,
       actions: [
         IconButton(

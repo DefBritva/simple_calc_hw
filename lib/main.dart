@@ -4,10 +4,15 @@ import 'package:simple_calc_hw/core/bloc/bloc.dart';
 import 'package:simple_calc_hw/core/bloc/my_bloc_observer.dart';
 import 'package:simple_calc_hw/core/domain/calculator.dart';
 import 'package:simple_calc_hw/core/theme/theme.dart';
-import 'package:simple_calc_hw/features/tip_calculator/tip_calculator_page.dart';
+import 'package:simple_calc_hw/features/percents_form/presentation/percents_form_page.dart';
+import 'package:simple_calc_hw/features/tip_calculator/presentation/tip_calculator_page.dart';
+import 'package:easy_localization/easy_localization.dart';
+import 'package:simple_calc_hw/generated/codegen_loader.g.dart';
 
-void main() {
+void main() async {
   Bloc.observer = MyBlocObserver();
+  WidgetsFlutterBinding.ensureInitialized();
+  await EasyLocalization.ensureInitialized();
   runApp(const TipsCalculator());
 }
 
@@ -39,8 +44,13 @@ class AppBlocProvider extends StatelessWidget {
       create: (BuildContext context) => AppBloc(
         context.read<ThemeChanger>(),
         context.read<TipCalculator>(),
-      ),
-      child: const App(),
+      )..add(Start()),
+      child: EasyLocalization(
+          assetLoader: const CodegenLoader(),
+          supportedLocales: const [Locale('en'), Locale('ru')],
+          path: 'lib/core/localization/translations',
+          fallbackLocale: const Locale('en'),
+          child: const App()),
     );
   }
 }
@@ -53,9 +63,16 @@ class App extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
+      localizationsDelegates: context.localizationDelegates,
+      supportedLocales: context.supportedLocales,
+      locale: context.locale,
       theme: context.watch<AppBloc>().state.themeData,
       debugShowCheckedModeBanner: false,
-      home: const TipCalculatorPage(),
+      routes: {
+        '/calculator': (context) => const TipCalculatorPage(),
+        '/calculator/form': (context) => const PercentsFormPage(),
+      },
+      initialRoute: '/calculator',
     );
   }
 }

@@ -16,67 +16,73 @@ class _PercentsWidgetState extends State<PercentsWidget> {
   int? percent = 0;
   @override
   Widget build(BuildContext context) {
-    return Column(
-      crossAxisAlignment: CrossAxisAlignment.start,
-      children: [
-        RadioListTile(
-            title: const Text(
-              '5%',
-              style: Styles.appTextStyle,
-            ),
-            fillColor: MaterialStateProperty.resolveWith(
-                (states) => Theme.of(context).primaryColor),
-            value: 5,
-            groupValue: percent,
-            onChanged: (val) {
-              setState(() {
-                percent = val;
-                context.read<AppBloc>().add(PercentSelected(percent ?? -1));
-              });
-            }),
-        RadioListTile(
-            title: const Text(
-              '10%',
-              style: Styles.appTextStyle,
-            ),
-            fillColor: MaterialStateProperty.resolveWith(
-                (states) => Theme.of(context).primaryColor),
-            value: 10,
-            groupValue: percent,
-            onChanged: (val) {
-              setState(() {
-                percent = val;
-                context.read<AppBloc>().add(PercentSelected(percent ?? -1));
-              });
-            }),
-        RadioListTile(
-            title: const Text(
-              '15%',
-              style: Styles.appTextStyle,
-            ),
-            fillColor: MaterialStateProperty.resolveWith(
-                (states) => Theme.of(context).primaryColor),
-            value: 15,
-            groupValue: percent,
-            onChanged: (val) {
-              setState(() {
-                percent = val;
-                context.read<AppBloc>().add(PercentSelected(percent ?? -1));
-              });
-            }),
-        Padding(
-          padding:
-              EdgeInsets.only(left: MediaQuery.of(context).size.width * 0.03),
-          child: TextButton(
-              onPressed: () {
-                setState(() {
-                  percent = 0;
-                  context.read<AppBloc>().add(PercentSelected(percent ?? -1));
-                });
-              },
-              child: const Text('сброс')),
-        )
-      ],
+    return BlocBuilder<AppBloc, AppState>(
+      builder: (context, state) {
+        return Column(
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: [
+            RadioListTile(
+                title: Text(
+                  '${state.percents[0]}',
+                  style: Styles.appTextStyle,
+                ),
+                fillColor: MaterialStateProperty.resolveWith(
+                    (states) => Theme.of(context).primaryColor),
+                value: state.percents[0],
+                groupValue: percent,
+                onChanged: (val) {
+                  setState(() {
+                    percent = val;
+                    context.read<AppBloc>().add(PercentSelected(percent ?? -1));
+                  });
+                }),
+            RadioListTile(
+                title: Text(
+                  '${state.percents[1]}',
+                  style: Styles.appTextStyle,
+                ),
+                fillColor: MaterialStateProperty.resolveWith(
+                    (states) => Theme.of(context).primaryColor),
+                value: state.percents[1],
+                groupValue: percent,
+                onChanged: (val) {
+                  setState(() {
+                    percent = val;
+                    context.read<AppBloc>().add(PercentSelected(percent ?? -1));
+                  });
+                }),
+            RadioListTile(
+                title: Text(
+                  '${state.percents[2]}',
+                  style: Styles.appTextStyle,
+                ),
+                fillColor: MaterialStateProperty.resolveWith(
+                    (states) => Theme.of(context).primaryColor),
+                value: state.percents[2],
+                groupValue: percent,
+                onChanged: (val) {
+                  setState(() {
+                    percent = val;
+                    context.read<AppBloc>().add(PercentSelected(percent ?? -1));
+                  });
+                }),
+            Padding(
+              padding: EdgeInsets.only(
+                  left: MediaQuery.of(context).size.width * 0.03),
+              child: TextButton(
+                  onPressed: () {
+                    setState(() {
+                      percent = 0;
+                      context
+                          .read<AppBloc>()
+                          .add(PercentSelected(percent ?? -1));
+                    });
+                  },
+                  child: const Text('сброс')),
+            )
+          ],
+        );
+      },
     );
   }
 }

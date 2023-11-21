@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:simple_calc_hw/core/bloc/bloc.dart';
-import 'package:simple_calc_hw/features/tip_calculator/presentation/widgets/user_input.dart';
 
 class UserInputWidget extends StatelessWidget {
   const UserInputWidget({
@@ -46,6 +45,41 @@ class UserInputWidget extends StatelessWidget {
                 )),
           )
         ]),
+      ),
+    );
+  }
+}
+
+class UserInput extends StatelessWidget {
+  final TextEditingController inputContoller;
+
+  const UserInput({
+    super.key,
+    required this.inputContoller,
+  });
+
+  @override
+  Widget build(BuildContext context) {
+    return Flexible(
+      child: TextField(
+        keyboardType: TextInputType.number,
+        controller: inputContoller,
+        onSubmitted: (value) {},
+        onChanged: (value) {
+          final input = inputContoller.text;
+          context.read<AppBloc>().add(LoadInput(input));
+        },
+        style: const TextStyle(),
+        maxLength: 16,
+        decoration: InputDecoration(
+          hintText: 'Сумма счёта (руб)',
+          contentPadding:
+              EdgeInsets.only(top: MediaQuery.of(context).size.height * 0.03),
+          hintStyle: TextStyle(
+              color: Theme.of(context).bottomAppBarTheme.color, fontSize: 18),
+          counterText: '',
+          border: InputBorder.none,
+        ),
       ),
     );
   }
