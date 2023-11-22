@@ -59,7 +59,7 @@ class _PercentsFormBodyState extends State<PercentsFormBody> {
                         int.tryParse(percents[1]) == null ||
                         int.tryParse(percents[2]) == null) {
                       final snackBar = SnackBar(
-                        content: const Text('error: Incorrect input'),
+                        content: const Text(LocaleKeys.incorrectInput).tr(),
                         action: SnackBarAction(
                             label: 'OK',
                             onPressed: () {
@@ -76,9 +76,9 @@ class _PercentsFormBodyState extends State<PercentsFormBody> {
                   },
                   style: ElevatedButton.styleFrom(shape: const StadiumBorder()),
                   child: const Text(
-                    'save percents',
+                    LocaleKeys.savePercents,
                     style: TextStyle(fontSize: 16, color: Colors.white),
-                  )),
+                  ).tr()),
             )
           ],
         ),

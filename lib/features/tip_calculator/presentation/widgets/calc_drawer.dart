@@ -18,7 +18,7 @@ class CalcDrawer extends StatelessWidget {
             EdgeInsets.only(top: Scaffold.of(context).appBarMaxHeight ?? 0),
         child: SizedBox(
           height: 200,
-          width: MediaQuery.of(context).size.width * 0.5,
+          width: MediaQuery.of(context).size.width * 1,
           child: Drawer(
             backgroundColor: Theme.of(context).canvasColor,
             child: Column(

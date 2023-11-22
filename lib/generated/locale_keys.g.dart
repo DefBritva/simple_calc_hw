@@ -1,6 +1,8 @@
 // DO NOT EDIT. This is code generated via package:easy_localization/generate.dart
 
-abstract class  LocaleKeys {
+// ignore_for_file: constant_identifier_names
+
+abstract class LocaleKeys {
   static const title = 'title';
   static const amount = 'amount';
   static const tips = 'tips';
@@ -16,5 +18,4 @@ abstract class  LocaleKeys {
   static const enter_large_percent = 'enter_large_percent';
   static const savePercents = 'savePercents';
   static const incorrectInput = 'incorrectInput';
-
 }
