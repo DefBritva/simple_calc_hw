@@ -174,9 +174,4 @@ class AppBloc extends Bloc<AppEvent, AppState> {
       emit(newState);
     });
   }
-
-  Future<String> getLocale() async {
-    final prefs = await SharedPreferences.getInstance();
-    return prefs.getString('locale') ?? 'en';
-  }
 }
