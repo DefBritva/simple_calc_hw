@@ -20,7 +20,7 @@ class CodegenLoader extends AssetLoader {
     "tips": "Tips percent",
     "reset": "reset",
     "calculate": "Calculate",
-    "total_tip": "Total tips amount",
+    "total_tip": "Total amount",
     "currency": "\$",
     "language": "language",
     "custom_percents": "custom percents",

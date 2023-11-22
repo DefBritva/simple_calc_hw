@@ -1,13 +1,13 @@
 class TipCalculator {
-  String calculateTip(String number, int percent) {
-    final int intNumber = int.tryParse(number) ?? -1;
-    if (number.startsWith('0')) {
+  String calculateTip(String amount, int percent) {
+    final int intAmount = int.tryParse(amount) ?? -1;
+    if (amount.startsWith('0')) {
       return '';
     }
-    if (intNumber < 0) {
+    if (intAmount < 0) {
       return '';
     } else {
-      return (intNumber / 100 * percent).round().toString();
+      return (intAmount + intAmount / 100 * percent).round().toString();
     }
   }
 }
