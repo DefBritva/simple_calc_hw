@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:equatable/equatable.dart';
 import 'package:shared_preferences/shared_preferences.dart';
-import 'package:simple_calc_hw/core/domain/calculator.dart';
+import 'package:simple_calc_hw/core/service/calculator.dart';
 import 'package:simple_calc_hw/core/theme/theme.dart';
 
 part 'event.dart';

@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:simple_calc_hw/core/bloc/bloc.dart';
 import 'package:simple_calc_hw/core/bloc/my_bloc_observer.dart';
-import 'package:simple_calc_hw/core/domain/calculator.dart';
+import 'package:simple_calc_hw/core/service/calculator.dart';
 import 'package:simple_calc_hw/core/theme/theme.dart';
 import 'package:simple_calc_hw/features/percents_form/presentation/percents_form_page.dart';
 import 'package:simple_calc_hw/features/tip_calculator/presentation/tip_calculator_page.dart';
