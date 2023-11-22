@@ -6,8 +6,10 @@ class TipCalculator {
     }
     if (intAmount < 0) {
       return '';
+    } else if (percent == 0) {
+      return intAmount.toString();
     } else {
-      return (intAmount + intAmount / 100 * percent).round().toString();
+      return (intAmount + (intAmount / 100 * percent)).round().toString();
     }
   }
 }

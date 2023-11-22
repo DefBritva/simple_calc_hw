@@ -138,7 +138,7 @@ class AppBloc extends Bloc<AppEvent, AppState> {
         locale: state.locale,
         themeData: state.themeData,
         result: state.result,
-        percent: state.percent,
+        percent: 0,
         userInput: state.userInput,
         percents: percents,
       );
@@ -150,7 +150,7 @@ class AppBloc extends Bloc<AppEvent, AppState> {
           locale: state.locale,
           themeData: state.themeData,
           result: state.result,
-          percent: state.percent,
+          percent: 0,
           userInput: state.userInput,
           percents: event.percents);
       final prefs = await SharedPreferences.getInstance();
