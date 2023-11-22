@@ -1,4 +1,6 @@
+import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
+import 'package:simple_calc_hw/generated/locale_keys.g.dart';
 
 class PercentsFormAppBar extends StatelessWidget
     implements PreferredSizeWidget {
@@ -9,7 +11,7 @@ class PercentsFormAppBar extends StatelessWidget
   @override
   Widget build(BuildContext context) {
     return AppBar(
-      title: const Text('custom percents'),
+      title: Text(LocaleKeys.custom_percents.tr()),
       centerTitle: true,
     );
   }

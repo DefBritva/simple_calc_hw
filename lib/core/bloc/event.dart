@@ -61,3 +61,12 @@ final class SetDefaultPercents extends AppEvent {
   @override
   List<Object?> get props => [percents];
 }
+
+final class ChangeLanguage extends AppEvent {
+  final String language;
+
+  ChangeLanguage({required this.language});
+
+  @override
+  List<Object?> get props => [language];
+}

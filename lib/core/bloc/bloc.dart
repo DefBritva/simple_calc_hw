@@ -12,10 +12,12 @@ class AppBloc extends Bloc<AppEvent, AppState> {
   final ThemeChanger _themeChanger;
   final TipCalculator _calc;
   AppBloc(this._themeChanger, this._calc)
-      : super(InitialState(themeData: _themeChanger.themeData)) {
+      : super(InitialState(themeData: _themeChanger.themeData, locale: 'en')) {
     on<Start>((event, emit) async {
       final List<int> percents;
       final prefs = await SharedPreferences.getInstance();
+      final locale = prefs.getString('locale');
+
       if (prefs.getInt('smallPercent') == null) {
         percents = state.percents;
       } else {
@@ -26,6 +28,7 @@ class AppBloc extends Bloc<AppEvent, AppState> {
         ];
       }
       final newState = MainPageState(
+        locale: locale ?? 'ru',
         themeData: state.themeData,
         result: state.result,
         percent: state.percent,
@@ -38,6 +41,7 @@ class AppBloc extends Bloc<AppEvent, AppState> {
       _themeChanger.toggleTheme();
       emit(
         MainPageState(
+          locale: state.locale,
           result: state.result,
           percent: state.percent,
           userInput: state.userInput,
@@ -51,6 +55,7 @@ class AppBloc extends Bloc<AppEvent, AppState> {
       final String res = _calc.calculateTip(event.input, state.percent);
       if (int.tryParse(res) == null) {
         final newState = MainPageState(
+          locale: state.locale,
           themeData: state.themeData,
           result: '0',
           percent: state.percent,
@@ -60,6 +65,7 @@ class AppBloc extends Bloc<AppEvent, AppState> {
         emit(newState);
       } else if (int.parse(res) > 0) {
         final newState = MainPageState(
+          locale: state.locale,
           themeData: state.themeData,
           result: res,
           percent: state.percent,
@@ -69,6 +75,7 @@ class AppBloc extends Bloc<AppEvent, AppState> {
         emit(newState);
       } else {
         final newState = MainPageState(
+          locale: state.locale,
           themeData: state.themeData,
           result: '0',
           percent: state.percent,
@@ -81,6 +88,7 @@ class AppBloc extends Bloc<AppEvent, AppState> {
 
     on<PercentSelected>((event, emit) {
       final newState = MainPageState(
+        locale: state.locale,
         themeData: state.themeData,
         result: state.result,
         percent: event.percent,
@@ -92,6 +100,7 @@ class AppBloc extends Bloc<AppEvent, AppState> {
 
     on<LoadInput>((event, emit) {
       final newState = MainPageState(
+        locale: state.locale,
         themeData: state.themeData,
         result: state.result,
         percent: state.percent,
@@ -108,6 +117,7 @@ class AppBloc extends Bloc<AppEvent, AppState> {
         percent: state.percent,
         userInput: event.input,
         percents: state.percents,
+        locale: state.locale,
       );
       emit(newState);
     });
@@ -125,6 +135,7 @@ class AppBloc extends Bloc<AppEvent, AppState> {
       await prefs.setInt('mediumPercent', percents[1]);
       await prefs.setInt('largePercent', percents[2]);
       final newState = MainPageState(
+        locale: state.locale,
         themeData: state.themeData,
         result: state.result,
         percent: state.percent,
@@ -134,14 +145,38 @@ class AppBloc extends Bloc<AppEvent, AppState> {
       emit(newState);
     });
 
-    on<SetDefaultPercents>((event, emit) {
+    on<SetDefaultPercents>((event, emit) async {
       final newState = MainPageState(
+          locale: state.locale,
           themeData: state.themeData,
           result: state.result,
           percent: state.percent,
           userInput: state.userInput,
           percents: event.percents);
+      final prefs = await SharedPreferences.getInstance();
+      await prefs.remove('smallPercent');
+      await prefs.remove('mediumPercent');
+      await prefs.remove('largePercent');
       emit(newState);
     });
+
+    on<ChangeLanguage>((event, emit) async {
+      final prefs = await SharedPreferences.getInstance();
+      await prefs.setString('locale', event.language);
+      final newState = LocalLoadedState(
+        themeData: state.themeData,
+        result: state.result,
+        percent: state.percent,
+        userInput: state.userInput,
+        percents: state.percents,
+        locale: event.language,
+      );
+      emit(newState);
+    });
+  }
+
+  Future<String> getLocale() async {
+    final prefs = await SharedPreferences.getInstance();
+    return prefs.getString('locale') ?? 'en';
   }
 }

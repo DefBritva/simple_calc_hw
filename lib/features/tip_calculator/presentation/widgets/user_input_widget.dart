@@ -1,6 +1,8 @@
+import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:simple_calc_hw/core/bloc/bloc.dart';
+import 'package:simple_calc_hw/generated/locale_keys.g.dart';
 
 class UserInputWidget extends StatelessWidget {
   const UserInputWidget({
@@ -72,7 +74,7 @@ class UserInput extends StatelessWidget {
         style: const TextStyle(),
         maxLength: 16,
         decoration: InputDecoration(
-          hintText: 'Сумма счёта (руб)',
+          hintText: LocaleKeys.amount.tr(),
           contentPadding:
               EdgeInsets.only(top: MediaQuery.of(context).size.height * 0.03),
           hintStyle: TextStyle(

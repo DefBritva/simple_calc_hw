@@ -49,6 +49,7 @@ class AppBlocProvider extends StatelessWidget {
           assetLoader: const CodegenLoader(),
           supportedLocales: const [Locale('en'), Locale('ru')],
           path: 'lib/core/localization/translations',
+          startLocale: const Locale('ru'),
           fallbackLocale: const Locale('en'),
           child: const App()),
     );

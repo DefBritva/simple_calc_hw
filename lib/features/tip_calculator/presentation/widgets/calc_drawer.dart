@@ -1,6 +1,8 @@
+import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:simple_calc_hw/core/bloc/bloc.dart';
+import 'package:simple_calc_hw/generated/locale_keys.g.dart';
 
 class CalcDrawer extends StatelessWidget {
   const CalcDrawer({
@@ -23,9 +25,9 @@ class CalcDrawer extends StatelessWidget {
               mainAxisAlignment: MainAxisAlignment.center,
               crossAxisAlignment: CrossAxisAlignment.center,
               children: [
-                const ListTile(
-                  trailing: LanguageButton(),
-                  title: Text('language'),
+                ListTile(
+                  trailing: const LanguageButton(),
+                  title: Text(LocaleKeys.language.tr()),
                 ),
                 ListTile(
                   trailing: IconButton(
@@ -37,7 +39,7 @@ class CalcDrawer extends StatelessWidget {
                         Icons.percent_rounded,
                         color: Theme.of(context).colorScheme.secondary,
                       )),
-                  title: const Text('custom percents'),
+                  title: Text(LocaleKeys.custom_percents.tr()),
                 ),
                 ListTile(
                   trailing: IconButton(
@@ -49,7 +51,7 @@ class CalcDrawer extends StatelessWidget {
                         Icons.autorenew_rounded,
                         color: Theme.of(context).colorScheme.secondary,
                       )),
-                  title: const Text('default percents'),
+                  title: Text(LocaleKeys.default_percents.tr()),
                 ),
               ],
             ),
@@ -70,9 +72,11 @@ class LanguageButton extends StatefulWidget {
 }
 
 class _LanguageButtonState extends State<LanguageButton> {
+  _LanguageButtonState();
   String language = 'en';
   @override
   Widget build(BuildContext context) {
+    language = context.watch<AppBloc>().state.locale;
     return DropdownButton<String>(
         value: language,
         underline: Container(),
@@ -83,6 +87,8 @@ class _LanguageButtonState extends State<LanguageButton> {
         onChanged: (String? newValue) {
           setState(() {
             language = newValue!;
+            context.setLocale(Locale(language));
+            context.read<AppBloc>().add(ChangeLanguage(language: language));
           });
         },
         items: [
@@ -100,25 +106,5 @@ class _LanguageButtonState extends State<LanguageButton> {
                     TextStyle(color: Theme.of(context).colorScheme.secondary)),
           )
         ]);
-  }
-}
-
-class LanguageItems extends StatelessWidget {
-  const LanguageItems({super.key});
-
-  @override
-  Widget build(BuildContext context) {
-    return Column(
-      children: [
-        TextButton(
-          onPressed: () {},
-          child: const Text('russian'),
-        ),
-        TextButton(
-          onPressed: () {},
-          child: const Text('english'),
-        ),
-      ],
-    );
   }
 }

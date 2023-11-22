@@ -1,3 +1,17 @@
 {
-    "hello_world": "Hello world"
+    "title": "Simple tips calc",
+    "amount": "Amount ($)",
+    "tips": "Tips percent",
+    "reset": "reset",
+    "calculate": "Calculate",
+    "total_tip": "Total tips amount",
+    "currency": "$",
+    "language": "language",
+    "custom_percents": "custom percents",
+    "default_percents": "default percents",
+    "enter_small_percent": "Enter small percent",
+    "enter_medium_percent": "Enter medium percent",
+    "enter_large_percent": "Enter large percent",
+    "savePercents": "save percents",
+    "incorrectInput": "error incorrect input"
 }

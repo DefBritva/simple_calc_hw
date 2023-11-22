@@ -15,7 +15,7 @@ class CalcAppBar extends StatelessWidget implements PreferredSizeWidget {
             Scaffold.of(context).openDrawer();
           },
           icon: const Icon(Icons.settings)),
-      title: Text(LocaleKeys.hello_world.tr()),
+      title: Text(LocaleKeys.title.tr()),
       centerTitle: true,
       actions: [
         IconButton(

@@ -6,19 +6,22 @@ abstract class AppState extends Equatable {
   final int percent;
   final List<int> percents;
   final String userInput;
+  final String locale;
   const AppState({
     required this.percents,
     required this.themeData,
     required this.result,
     required this.percent,
     required this.userInput,
+    required this.locale,
   });
 
   @override
   bool get stringify => true;
 
   @override
-  List<Object> get props => [themeData, result, percent, userInput, percents];
+  List<Object> get props =>
+      [themeData, result, percent, userInput, percents, locale];
 }
 
 class InitialState extends AppState {
@@ -28,6 +31,7 @@ class InitialState extends AppState {
     super.percent = -1,
     super.userInput = '',
     super.percents = const [5, 10, 15],
+    required super.locale,
   });
 }
 
@@ -38,5 +42,16 @@ class MainPageState extends AppState {
     required super.percent,
     required super.userInput,
     required super.percents,
+    required super.locale,
   });
+}
+
+class LocalLoadedState extends AppState {
+  const LocalLoadedState(
+      {required super.percents,
+      required super.themeData,
+      required super.result,
+      required super.percent,
+      required super.userInput,
+      required super.locale});
 }

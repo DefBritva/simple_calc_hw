@@ -1,7 +1,9 @@
+import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:simple_calc_hw/core/bloc/bloc.dart';
 import 'package:simple_calc_hw/core/styles/my_text_style.dart';
+import 'package:simple_calc_hw/generated/locale_keys.g.dart';
 
 class PercentsWidget extends StatefulWidget {
   const PercentsWidget({
@@ -23,7 +25,7 @@ class _PercentsWidgetState extends State<PercentsWidget> {
           children: [
             RadioListTile(
                 title: Text(
-                  '${state.percents[0]}',
+                  '${state.percents[0]}%',
                   style: Styles.appTextStyle,
                 ),
                 fillColor: MaterialStateProperty.resolveWith(
@@ -38,7 +40,7 @@ class _PercentsWidgetState extends State<PercentsWidget> {
                 }),
             RadioListTile(
                 title: Text(
-                  '${state.percents[1]}',
+                  '${state.percents[1]}%',
                   style: Styles.appTextStyle,
                 ),
                 fillColor: MaterialStateProperty.resolveWith(
@@ -53,7 +55,7 @@ class _PercentsWidgetState extends State<PercentsWidget> {
                 }),
             RadioListTile(
                 title: Text(
-                  '${state.percents[2]}',
+                  '${state.percents[2]}%',
                   style: Styles.appTextStyle,
                 ),
                 fillColor: MaterialStateProperty.resolveWith(
@@ -78,7 +80,7 @@ class _PercentsWidgetState extends State<PercentsWidget> {
                           .add(PercentSelected(percent ?? -1));
                     });
                   },
-                  child: const Text('сброс')),
+                  child: Text(LocaleKeys.reset.tr())),
             )
           ],
         );

@@ -1,7 +1,9 @@
+import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:simple_calc_hw/core/bloc/bloc.dart';
 import 'package:simple_calc_hw/features/percents_form/presentation/widgets/form_user_input.dart';
+import 'package:simple_calc_hw/generated/locale_keys.g.dart';
 
 class PercentsFormBody extends StatefulWidget {
   const PercentsFormBody({
@@ -26,17 +28,17 @@ class _PercentsFormBodyState extends State<PercentsFormBody> {
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
             FormUserInput(
-              hintText: 'enter small percent',
+              hintText: LocaleKeys.enter_small_percent.tr(),
               controller: smallPercentController,
             ),
             const SizedBox(height: 50),
             FormUserInput(
-              hintText: 'enter medium percent',
+              hintText: LocaleKeys.enter_medium_percent.tr(),
               controller: mediumPercentController,
             ),
             const SizedBox(height: 50),
             FormUserInput(
-              hintText: 'enter large percent',
+              hintText: LocaleKeys.enter_large_percent.tr(),
               controller: largePercentController,
             ),
             const SizedBox(height: 75),
@@ -48,14 +50,29 @@ class _PercentsFormBodyState extends State<PercentsFormBody> {
                     final smallPercent = smallPercentController.text;
                     final mediumPercent = mediumPercentController.text;
                     final largePercent = largePercentController.text;
-                    context.read<AppBloc>().add(SavePercents(
-                          percents: [
-                            smallPercent,
-                            mediumPercent,
-                            largePercent,
-                          ],
-                        ));
-                    Navigator.of(context).pop();
+                    final percents = <String>[];
+                    percents.add(smallPercent);
+                    percents.add(mediumPercent);
+                    percents.add(largePercent);
+
+                    if (int.tryParse(percents[0]) == null ||
+                        int.tryParse(percents[1]) == null ||
+                        int.tryParse(percents[2]) == null) {
+                      final snackBar = SnackBar(
+                        content: const Text('error: Incorrect input'),
+                        action: SnackBarAction(
+                            label: 'OK',
+                            onPressed: () {
+                              ScaffoldMessenger.of(context).clearSnackBars();
+                            }),
+                      );
+                      ScaffoldMessenger.of(context).showSnackBar(snackBar);
+                    } else {
+                      context
+                          .read<AppBloc>()
+                          .add(SavePercents(percents: percents));
+                      Navigator.of(context).pop();
+                    }
                   },
                   style: ElevatedButton.styleFrom(shape: const StadiumBorder()),
                   child: const Text(

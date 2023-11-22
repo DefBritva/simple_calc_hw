@@ -1,6 +1,8 @@
+import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:simple_calc_hw/core/bloc/bloc.dart';
+import 'package:simple_calc_hw/generated/locale_keys.g.dart';
 
 class CalculateButton extends StatelessWidget {
   const CalculateButton({
@@ -23,9 +25,12 @@ class CalculateButton extends StatelessWidget {
           context.read<AppBloc>().add(CalculateButtonPressed(input));
           FocusManager.instance.primaryFocus?.unfocus();
         },
-        child: const Text(
-          'Рассчитать',
-          style: TextStyle(fontSize: 16, color: Colors.white),
-        ));
+        child: Builder(builder: (context) {
+          context.watch<AppBloc>().state.locale;
+          return Text(
+            LocaleKeys.calculate.tr(),
+            style: const TextStyle(fontSize: 16, color: Colors.white),
+          );
+        }));
   }
 }
