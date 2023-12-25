@@ -20,19 +20,21 @@ class _CalcBodyState extends State<CalcBody> {
   Widget build(BuildContext context) {
     final height = MediaQuery.of(context).size.height;
     final width = MediaQuery.of(context).size.width;
+    final ScrollController scrollController = ScrollController();
     return GestureDetector(
       onTap: () {
         FocusScope.of(context).unfocus();
       },
       child: SafeArea(
-        child: CustomScrollView(
-          physics: const ClampingScrollPhysics(),
-          slivers: [
-            SliverToBoxAdapter(
-              child: Padding(
-                padding: const EdgeInsets.all(16.0),
-                child: Align(
-                  alignment: Alignment.center,
+        child: Padding(
+          padding: const EdgeInsets.all(16.0),
+          child: Align(
+            alignment: Alignment.center,
+            child: CustomScrollView(
+              controller: scrollController,
+              physics: const ClampingScrollPhysics(),
+              slivers: [
+                SliverToBoxAdapter(
                   child: Column(
                     children: [
                       SizedBox(height: height * 0.025),
@@ -43,20 +45,23 @@ class _CalcBodyState extends State<CalcBody> {
                       ),
                       AmountOfTipsTextWidget(height: height),
                       const PercentsWidget(),
-                      SizedBox(
-                        height: height * 0.1,
+                      CalculateButton(
+                        inputController: _inputController,
+                        scrollController: scrollController,
                       ),
-                      CalculateButton(inputController: _inputController),
                       SizedBox(height: height * 0.05),
                       const ResultTextWidget(),
                       SizedBox(height: height * 0.01),
-                      const ResultTipWidget(),
+                      const Padding(
+                        padding: EdgeInsets.only(bottom: 20),
+                        child: ResultTipWidget(),
+                      ),
                     ],
                   ),
                 ),
-              ),
-            )
-          ],
+              ],
+            ),
+          ),
         ),
       ),
     );

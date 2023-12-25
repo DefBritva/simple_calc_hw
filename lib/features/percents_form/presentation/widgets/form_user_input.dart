@@ -11,21 +11,19 @@ class FormUserInput extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Flexible(
-      child: TextField(
-        controller: controller,
-        autofocus: true,
-        keyboardType: TextInputType.number,
-        style: const TextStyle(),
-        maxLength: 2,
-        decoration: InputDecoration(
-          hintText: hintText,
-          contentPadding: const EdgeInsets.only(left: 10),
-          hintStyle: TextStyle(
-              color: Theme.of(context).bottomAppBarTheme.color, fontSize: 18),
-          counterText: '',
-          border: OutlineInputBorder(borderRadius: BorderRadius.circular(16)),
-        ),
+    return TextField(
+      controller: controller,
+      autofocus: true,
+      keyboardType: TextInputType.number,
+      style: const TextStyle(),
+      maxLength: 2,
+      decoration: InputDecoration(
+        hintText: hintText,
+        contentPadding: const EdgeInsets.all(20),
+        hintStyle: TextStyle(
+            color: Theme.of(context).bottomAppBarTheme.color, fontSize: 14),
+        counterText: '',
+        border: OutlineInputBorder(borderRadius: BorderRadius.circular(16)),
       ),
     );
   }

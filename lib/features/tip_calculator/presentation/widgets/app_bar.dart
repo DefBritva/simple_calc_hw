@@ -17,7 +17,7 @@ class CalcAppBar extends StatelessWidget implements PreferredSizeWidget {
           },
           icon: const Icon(Icons.settings)),
       title: Text(LocaleKeys.title.tr(),
-          style: const TextStyle(color: Colors.white)),
+          style: const TextStyle(color: Colors.white, fontSize: 18)),
       centerTitle: true,
       actions: [
         IconButton(

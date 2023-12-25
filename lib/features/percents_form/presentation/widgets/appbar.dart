@@ -11,7 +11,10 @@ class PercentsFormAppBar extends StatelessWidget
   @override
   Widget build(BuildContext context) {
     return AppBar(
-      title: Text(LocaleKeys.custom_percents.tr()),
+      title: Text(
+        LocaleKeys.custom_percents.tr(),
+        style: const TextStyle(fontSize: 18),
+      ),
       centerTitle: true,
     );
   }
