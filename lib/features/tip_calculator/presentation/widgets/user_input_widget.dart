@@ -19,23 +19,16 @@ class UserInputWidget extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
-      height: height * 0.07,
-      width: width * 0.8,
-      decoration: BoxDecoration(
+        height: height * 0.07,
+        width: width * 0.8,
+        decoration: BoxDecoration(
           border: Border(
-              bottom:
-                  BorderSide(color: Theme.of(context).colorScheme.primary))),
-      child: Padding(
-        padding: EdgeInsets.only(left: width * 0.02, bottom: height * 0.01),
-        child: Row(children: [
-          UserInput(inputContoller: _inputController),
-          Padding(
-            padding: EdgeInsets.only(
-                top: MediaQuery.of(context).size.height > 599
-                    ? MediaQuery.of(context).size.height * 0.025
-                    : MediaQuery.of(context).size.height * 0.013),
-            child: IconButton(
-                iconSize: 20,
+              bottom: BorderSide(color: Theme.of(context).colorScheme.primary)),
+        ),
+        child: Row(
+          children: [
+            UserInput(inputContoller: _inputController),
+            IconButton(
                 onPressed: () {
                   _inputController.clear();
 
@@ -43,12 +36,10 @@ class UserInputWidget extends StatelessWidget {
                 },
                 icon: const Icon(
                   Icons.close_outlined,
-                  size: 20,
-                )),
-          )
-        ]),
-      ),
-    );
+                  size: 25,
+                ))
+          ],
+        ));
   }
 }
 
@@ -71,12 +62,10 @@ class UserInput extends StatelessWidget {
           final input = inputContoller.text;
           context.read<AppBloc>().add(LoadInput(input));
         },
-        style: const TextStyle(),
+        style: const TextStyle(fontSize: 18),
         maxLength: 16,
         decoration: InputDecoration(
           hintText: LocaleKeys.amount.tr(),
-          contentPadding:
-              EdgeInsets.only(top: MediaQuery.of(context).size.height * 0.03),
           hintStyle: TextStyle(
               color: Theme.of(context).bottomAppBarTheme.color, fontSize: 18),
           counterText: '',

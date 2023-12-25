@@ -20,28 +20,43 @@ class _CalcBodyState extends State<CalcBody> {
   Widget build(BuildContext context) {
     final height = MediaQuery.of(context).size.height;
     final width = MediaQuery.of(context).size.width;
-    return SafeArea(
-      child: SingleChildScrollView(
-        child: Align(
-          alignment: Alignment.center,
-          child: Column(
-            children: [
-              SizedBox(height: height * 0.025),
-              UserInputWidget(
-                height: height,
-                width: width,
-                inputController: _inputController,
+    return GestureDetector(
+      onTap: () {
+        FocusScope.of(context).unfocus();
+      },
+      child: SafeArea(
+        child: CustomScrollView(
+          physics: const ClampingScrollPhysics(),
+          slivers: [
+            SliverToBoxAdapter(
+              child: Padding(
+                padding: const EdgeInsets.all(16.0),
+                child: Align(
+                  alignment: Alignment.center,
+                  child: Column(
+                    children: [
+                      SizedBox(height: height * 0.025),
+                      UserInputWidget(
+                        height: height,
+                        width: width,
+                        inputController: _inputController,
+                      ),
+                      AmountOfTipsTextWidget(height: height),
+                      const PercentsWidget(),
+                      SizedBox(
+                        height: height * 0.1,
+                      ),
+                      CalculateButton(inputController: _inputController),
+                      SizedBox(height: height * 0.05),
+                      const ResultTextWidget(),
+                      SizedBox(height: height * 0.01),
+                      const ResultTipWidget(),
+                    ],
+                  ),
+                ),
               ),
-              AmountOfTipsTextWidget(height: height),
-              const PercentsWidget(),
-              SizedBox(height: height > 599 ? height * 0.07 : 0),
-              CalculateButton(inputController: _inputController),
-              SizedBox(height: height > 599 ? height * 0.05 : height * 0.01),
-              const ResultTextWidget(),
-              SizedBox(height: height * 0.01),
-              const ResultTipWidget(),
-            ],
-          ),
+            )
+          ],
         ),
       ),
     );

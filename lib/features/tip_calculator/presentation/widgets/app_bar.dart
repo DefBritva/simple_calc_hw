@@ -11,14 +11,17 @@ class CalcAppBar extends StatelessWidget implements PreferredSizeWidget {
   Widget build(BuildContext context) {
     return AppBar(
       leading: IconButton(
+          color: Colors.white,
           onPressed: () {
             Scaffold.of(context).openDrawer();
           },
           icon: const Icon(Icons.settings)),
-      title: Text(LocaleKeys.title.tr()),
+      title: Text(LocaleKeys.title.tr(),
+          style: const TextStyle(color: Colors.white)),
       centerTitle: true,
       actions: [
         IconButton(
+          color: Colors.white,
           onPressed: () => context.read<AppBloc>().add(ThemeButtonPressed()),
           icon: Theme.of(context).primaryColor == Colors.deepPurpleAccent
               ? const Icon(Icons.light_mode_sharp)

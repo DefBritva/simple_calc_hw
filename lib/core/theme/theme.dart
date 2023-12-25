@@ -1,19 +1,35 @@
 import 'package:flutter/material.dart';
 
 ThemeData lightMode = ThemeData(
+  elevatedButtonTheme: ElevatedButtonThemeData(
+    style: ElevatedButton.styleFrom(
+      backgroundColor: Colors.blueAccent,
+      shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(18)),
+    ),
+  ),
   inputDecorationTheme: InputDecorationTheme(
-      border: OutlineInputBorder(borderRadius: BorderRadius.circular(16))),
-  drawerTheme:
-      const DrawerThemeData(backgroundColor: Color.fromRGBO(255, 255, 255, 1)),
+    border: OutlineInputBorder(
+      borderRadius: BorderRadius.circular(16),
+    ),
+  ),
+  drawerTheme: const DrawerThemeData(
+    backgroundColor: Color.fromRGBO(255, 255, 255, 1),
+  ),
   bottomAppBarTheme: const BottomAppBarTheme(color: Colors.black),
-  primaryColor: Colors.purpleAccent,
+  primaryColor: Colors.blueAccent,
   brightness: Brightness.light,
-  appBarTheme: const AppBarTheme(backgroundColor: Colors.purpleAccent),
+  appBarTheme: const AppBarTheme(backgroundColor: Colors.blueAccent),
   colorScheme: const ColorScheme.light(
-      primary: Colors.purpleAccent, secondary: Colors.black),
+      primary: Colors.blueAccent, secondary: Colors.black),
 );
 
 ThemeData darkMode = ThemeData(
+    elevatedButtonTheme: ElevatedButtonThemeData(
+      style: ElevatedButton.styleFrom(
+        backgroundColor: Colors.deepPurpleAccent,
+        shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(18)),
+      ),
+    ),
     drawerTheme: const DrawerThemeData(backgroundColor: Colors.black54),
     bottomAppBarTheme: const BottomAppBarTheme(color: Colors.white),
     primaryColor: Colors.deepPurpleAccent,

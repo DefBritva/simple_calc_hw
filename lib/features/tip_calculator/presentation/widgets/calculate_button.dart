@@ -14,23 +14,16 @@ class CalculateButton extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return ElevatedButton(
-        style: ButtonStyle(
-            shape: MaterialStateProperty.all<RoundedRectangleBorder>(
-                RoundedRectangleBorder(
-          borderRadius: BorderRadius.circular(18.0),
-        ))),
-        onPressed: () {
-          final input = _inputController.text;
-          context.read<AppBloc>().add(CalculateButtonPressed(input));
-          FocusManager.instance.primaryFocus?.unfocus();
-        },
-        child: Builder(builder: (context) {
-          context.watch<AppBloc>().state.locale;
-          return Text(
-            LocaleKeys.calculate.tr(),
-            style: const TextStyle(fontSize: 16, color: Colors.white),
-          );
-        }));
+    return ElevatedButton(onPressed: () {
+      final input = _inputController.text;
+      context.read<AppBloc>().add(CalculateButtonPressed(input));
+      FocusManager.instance.primaryFocus?.unfocus();
+    }, child: Builder(builder: (context) {
+      context.watch<AppBloc>().state.locale;
+      return Text(
+        LocaleKeys.calculate.tr(),
+        style: const TextStyle(fontSize: 16, color: Colors.white),
+      );
+    }));
   }
 }
