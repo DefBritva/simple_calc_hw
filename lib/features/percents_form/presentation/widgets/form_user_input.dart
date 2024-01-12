@@ -3,15 +3,18 @@ import 'package:flutter/material.dart';
 class FormUserInput extends StatelessWidget {
   final String hintText;
   final TextEditingController controller;
+  final FocusNode? focus;
   const FormUserInput({
     Key? key,
     required this.hintText,
     required this.controller,
+    this.focus,
   }) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
     return TextField(
+      focusNode: focus,
       controller: controller,
       autofocus: true,
       keyboardType: TextInputType.number,

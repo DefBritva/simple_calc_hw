@@ -22,80 +22,100 @@ class _PercentsFormBodyState extends State<PercentsFormBody> {
   @override
   Widget build(BuildContext context) {
     return SafeArea(
-      child: Center(
+      child: Align(
+        alignment: Alignment.topCenter,
         child: SizedBox(
           width: MediaQuery.of(context).size.width * 0.8,
           child: GestureDetector(
             onTap: () {
               FocusScope.of(context).unfocus();
             },
-            child: SingleChildScrollView(
-              child: Column(
-                children: [
-                  const SizedBox(
-                    height: 64,
-                  ),
-                  FormUserInput(
-                    hintText: LocaleKeys.enter_small_percent.tr(),
-                    controller: smallPercentController,
-                  ),
-                  const SizedBox(height: 50),
-                  FormUserInput(
-                    hintText: LocaleKeys.enter_medium_percent.tr(),
-                    controller: mediumPercentController,
-                  ),
-                  const SizedBox(height: 50),
-                  FormUserInput(
-                    hintText: LocaleKeys.enter_large_percent.tr(),
-                    controller: largePercentController,
-                  ),
-                  const SizedBox(height: 75),
-                  SizedBox(
-                    height: 50,
-                    width: 150,
-                    child: ElevatedButton(
-                        onPressed: () {
-                          final smallPercent = smallPercentController.text;
-                          final mediumPercent = mediumPercentController.text;
-                          final largePercent = largePercentController.text;
-                          final percents = <String>[];
-                          percents.add(smallPercent);
-                          percents.add(mediumPercent);
-                          percents.add(largePercent);
+            child: CustomScrollView(
+                physics: const ClampingScrollPhysics(),
+                slivers: [
+                  SliverToBoxAdapter(
+                    child: Column(
+                      children: [
+                        const SizedBox(
+                          height: 100,
+                        ),
+                        FormUserInput(
+                          hintText: LocaleKeys.enter_small_percent.tr(),
+                          controller: smallPercentController,
+                        ),
+                        const SizedBox(height: 50),
+                        FormUserInput(
+                          hintText: LocaleKeys.enter_medium_percent.tr(),
+                          controller: mediumPercentController,
+                        ),
+                        const SizedBox(height: 50),
+                        FormUserInput(
+                          hintText: LocaleKeys.enter_large_percent.tr(),
+                          controller: largePercentController,
+                        ),
+                        const SizedBox(height: 75),
+                        SizedBox(
+                          height: 50,
+                          width: 150,
+                          child: ElevatedButton(
+                              onPressed: () {
+                                final smallPercent =
+                                    smallPercentController.text;
+                                final mediumPercent =
+                                    mediumPercentController.text;
+                                final largePercent =
+                                    largePercentController.text;
+                                final percents = <String>[];
+                                percents.add(smallPercent);
+                                percents.add(mediumPercent);
+                                percents.add(largePercent);
 
-                          if (int.tryParse(percents[0]) == null ||
-                              int.tryParse(percents[1]) == null ||
-                              int.tryParse(percents[2]) == null) {
-                            final snackBar = SnackBar(
-                              content:
-                                  const Text(LocaleKeys.incorrectInput).tr(),
-                              action: SnackBarAction(
-                                  label: 'OK',
-                                  onPressed: () {
-                                    ScaffoldMessenger.of(context)
-                                        .clearSnackBars();
-                                  }),
-                            );
-                            ScaffoldMessenger.of(context)
-                                .showSnackBar(snackBar);
-                          } else {
-                            context
-                                .read<AppBloc>()
-                                .add(SavePercents(percents: percents));
-                            Navigator.of(context).pop();
-                          }
-                        },
-                        style: ElevatedButton.styleFrom(
-                            shape: const StadiumBorder()),
-                        child: const Text(
-                          LocaleKeys.savePercents,
-                          style: TextStyle(fontSize: 14, color: Colors.white),
-                        ).tr()),
+                                if (int.tryParse(percents[0]) == null ||
+                                    int.tryParse(percents[1]) == null ||
+                                    int.tryParse(percents[2]) == null) {
+                                  final snackBar = SnackBar(
+                                    content:
+                                        const Text(LocaleKeys.incorrectInput)
+                                            .tr(),
+                                    action: SnackBarAction(
+                                        label: 'OK',
+                                        onPressed: () {
+                                          ScaffoldMessenger.of(context)
+                                              .clearSnackBars();
+                                        }),
+                                  );
+                                  ScaffoldMessenger.of(context)
+                                      .showSnackBar(snackBar);
+                                } else {
+                                  context
+                                      .read<AppBloc>()
+                                      .add(SavePercents(percents: percents));
+                                  Navigator.of(context).pop();
+                                }
+                              },
+                              style: ElevatedButton.styleFrom(
+                                  shape: const StadiumBorder()),
+                              child: const Text(
+                                LocaleKeys.savePercents,
+                                style: TextStyle(
+                                    fontSize: 14, color: Colors.white),
+                              ).tr()),
+                        ),
+                        const SizedBox(height: 15),
+                      ],
+                    ),
                   ),
-                  const SizedBox(height: 15),
-                ],
-              ),
-            ),
+                  // Проверяет скрыта клавиатура или нет (== 0 значит скрыта)
+                  MediaQuery.of(context).viewInsets.bottom != 0
+                      ? const SliverToBoxAdapter(
+                          child: SizedBox(
+                            height: 500,
+                          ),
+                        )
+                      : const SliverToBoxAdapter(
+                          child: SizedBox(),
+                        )
+                ]),
           ),
         ),
       ),
