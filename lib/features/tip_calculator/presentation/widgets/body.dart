@@ -61,9 +61,9 @@ class _CalcBodyState extends State<CalcBody> {
                 ),
                 // Проверяет скрыта клавиатура или нет (== 0 значит скрыта)
                 MediaQuery.of(context).viewInsets.bottom != 0
-                    ? const SliverToBoxAdapter(
+                    ? SliverToBoxAdapter(
                         child: SizedBox(
-                          height: 500,
+                          height: MediaQuery.of(context).size.height * 0.4,
                         ),
                       )
                     : const SliverToBoxAdapter(
