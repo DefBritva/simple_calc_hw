@@ -1,0 +1,17 @@
+{
+    "title": "Калькулятор чаевых",
+    "amount": "Сумма счёта (руб)",
+    "tips": "Размер чаевых",
+    "reset": "сброс",
+    "calculate": "Рассчитать",
+    "total_tip": "Итоговая сумма",
+    "currency": "руб",
+    "language": "Язык",
+    "custom_percents": "Персональные проценты",
+    "default_percents": "Стандартные проценты",
+    "enter_small_percent": "Введите небольшой процент",
+    "enter_medium_percent": "Введите средний процент",
+    "enter_large_percent": "Введите большой процент",
+    "savePercents": "сохранить",
+    "incorrectInput": "Ошибка. некорректный ввод"
+}
